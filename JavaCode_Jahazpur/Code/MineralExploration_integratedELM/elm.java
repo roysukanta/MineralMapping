@@ -798,36 +798,42 @@ public class elm {
 		    HashMap<Integer, Integer> repetitions = new HashMap<Integer, Integer>(); 
 		    double[] VerifiedOp_classification = new double[numTestData];
 			for(int k=0; k<numTestData;k++){
-				 for(int l = 0;l<NumberofOutputNeurons;l++){
-					 if(result[k] == l){
-                            SimpleRegression sr=new SimpleRegression();
-							for(int i=0;i<libDimensions;i++) {
-								//System.out.println("R u getting data: "+test_set.get(k, i)+" "+CRlibSet[l][i]);                           
-								
-								sr.addData(CRtestSet[k][i],CRlibSet[l][i]);
-							}
-							double intercept=0,slope=0;
-							if(sr.hasIntercept()) {
-								intercept=sr.getIntercept();
-							}
-							slope=sr.getSlope(); 
-							//System.out.println("The equations are : ");
-							//System.out.println("y = "+slope+" x + "+intercept);
-							//System.out.println("correlation"+sr.getR());
-						   if(sr.getR()>Correlation_threshold){
-							   VerifiedOp_classification[k]=l; 
-							if (repetitions.containsKey(l))
-				 				repetitions.put(l, repetitions.get(l) + 1);
-				 			   else
-				 				repetitions.put(l, 1);
-						    }else{
-						    	VerifiedOp_classification[k]=100;
-						    	continue;
+				int l = (int) result[k];
+                                SimpleRegression sr=new SimpleRegression();
+				for(int i=0;i<libDimensions;i++) {
+					//System.out.println("R u getting data: "+test_set.get(k, i)+" "+CRlibSet[l][i]);                           
+					
+					sr.addData(CRtestSet[k][i],CRlibSet[l][i]);
+				}
+				/*double intercept=0,slope=0;
+				if(sr.hasIntercept()) {
+					intercept=sr.getIntercept();
+				}
+				slope=sr.getSlope(); */
+				//System.out.println("The equations are : ");
+				//System.out.println("y = "+slope+" x + "+intercept);
+				//System.out.println("correlation"+sr.getR());
+			   if(sr.getR()>0.75){
+				        VerifiedOp_classification[k]=l; 
+				                  if (repetitions.containsKey(l))
+	 				                  repetitions.put(l, repetitions.get(l) + 1);
+	 			                  else
+	 				                  repetitions.put(l, 1);
+			    }else{
+			    	    TreeMap<Integer, Double> corrList = new TreeMap<>();
+			        	for(int j=0; j<numlibSet;j++) {
+			    	      	SimpleRegression sr_loop=new SimpleRegression();
+			    		    for(int i=0;i<libDimensions;i++) {
+							      sr_loop.addData(CRtestSet[k][i],CRlibSet[j][i]);
 						    }
-							
-						 
-					 }
-				 }
+			    		    corrList.put(j, sr_loop.getR());
+			    	    }
+
+			    	    TreeMap<Integer, Double> SortedcorrList = (TreeMap<Integer, Double>) reversesortByValues(corrList);
+			    	    int label = SortedcorrList.firstKey();
+			    	    VerifiedOp_classification[k]=label+11;
+			    }
+					
 			}
 			System.out.println("Verified class is showing");
 			System.out.println(repetitions);
@@ -872,6 +878,39 @@ public class elm {
 				return matrix;
 			
 		}
+		 public static <K,V extends Comparable<V>> Map<K,V> reversesortByValues(final Map<K,V> map){
+			Comparator<K> valueComparator = new Comparator<K>() {
+				public int compare(K k1,K k2){
+					int compare = map.get(k2).compareTo(map.get(k1));
+					if(compare == 0) return 1;
+					else return compare;
+				}
+			};
+			Map<K, V> sortedByValues = new TreeMap<K,V>(valueComparator);
+			sortedByValues.putAll(map);
+			return sortedByValues;
+		}
+
+		public static <K, V extends Comparable<V>> Map<K, V> 
+		  sortByValues(final Map<K, V> map) {
+		    Comparator<K> valueComparator = 
+		             new Comparator<K>() {
+		      public int compare(K k1, K k2) {
+		        int compare = 
+		              map.get(k1).compareTo(map.get(k2));
+		        if (compare == 0) 
+		          return 1;
+		        else 
+		          return compare;
+		      }
+		    };
+		 
+		    Map<K, V> sortedByValues = 
+		      new TreeMap<K, V>(valueComparator);
+		    sortedByValues.putAll(map);
+		    return sortedByValues;
+		    
+		 }    
 	 public static void clusterImage(double[] result,int width_,int height_,String opfile) throws FileNotFoundException{
 	      	
 	      	int height = height_;
