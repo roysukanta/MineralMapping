@@ -30,17 +30,6 @@ import javax.media.jai.JAI;
 import org.apache.commons.math3.complex.Complex;
 import org.apache.commons.math3.stat.regression.SimpleRegression;
 
-
-
-
-
-
-
-
-
-
-
-
 import com.sun.media.jai.codec.TIFFEncodeParam;
 
 import no.uib.cipr.matrix.DenseMatrix;
@@ -936,7 +925,7 @@ public class elm {
 	      		e.printStackTrace();
 	      	}*/
 	      	int count = 0;
-	      	for(int i =0; i<height; i++){
+	        for(int i =0; i<height; i++){
 	      		for(int j =0; j<width;j++){
 	      		int cluster =(int)result[i*width+j];
 	      		int row;
@@ -1007,15 +996,15 @@ public class elm {
 	      			actualImage.setRGB(column, row, c.getRGB());
 	      			writer.println("Xaxis: "+j+"Yaxis: "+j+"Value: "+"violet");
 	      			//image.setRGB(column, row,c.getRGB());
-	      			
-	      			  			
+	      			      			  			
 	      			
 	      		}else if(cluster == 8){
-	      		//pink
-	      			Color c = new Color(0,255,0);           //green
+	      			
+	      			Color c = new Color(240,255,240);            //black
 	      			actualImage.setRGB(column, row, c.getRGB());
-	      			//image.setRGB(column, row,c.getRGB());
-	      			writer.println("Xaxis: "+j+"Yaxis: "+j+"Value: "+"green");
+	      			writer.println("Xaxis: "+j+"Yaxis: "+j+"Value: "+"honey due");
+          			
+          			//image.setRGB(column, row,c.getRGB());	
 	      			
 	      		}else if(cluster == 9){
 	      			Color c = new Color(128,128,128);            //black
@@ -1025,21 +1014,79 @@ public class elm {
 	      		
 	      		     
 	      		}else if(cluster == 10){
+	      			/*Color c = new Color(205,92,92);            //black
+          			actualImage.setRGB(column, row, c.getRGB());
+          			writer.println("Xaxis: "+j+"Yaxis: "+j+"Value: "+"indian red");*/
+	      			Color c = new Color(127,255,212);            //black
+          			actualImage.setRGB(column, row, c.getRGB());
+          			writer.println("Xaxis: "+j+"Yaxis: "+j+"Value: "+"acqua marine");
+	      			/*Color c = new Color(0,0,128);            //black
+          			actualImage.setRGB(column, row, c.getRGB());
+          			writer.println("Xaxis: "+j+"Yaxis: "+j+"Value: "+"marron");*/
+	      		}else if(cluster == 11){
+	      			
+	      			Color c = new Color(0,128,128);            //black
+	actualImage.setRGB(column, row, c.getRGB());
+	writer.println("Xaxis: "+j+"Yaxis: "+j+"Value: "+"teal");	
+	      		
+	      		}else if(cluster == 12){
 	      			Color c = new Color(0,0,255);            //blue
 	      			actualImage.setRGB(column, row, c.getRGB());
 	      			//image.setRGB(column, row,c.getRGB());
 	      			writer.println("Xaxis: "+j+"Yaxis: "+j+"Value: "+"blue");
 	      			
 	      			
+	      		}else if(cluster == 13){
+	      			Color c = new Color(0,255,0);           //green
+	      			actualImage.setRGB(column, row, c.getRGB());
+	      			//image.setRGB(column, row,c.getRGB());
+	      			writer.println("Xaxis: "+j+"Yaxis: "+j+"Value: "+"green");
+          			
+	      		
+	      		}else if(cluster == 14){
+	      			Color c = new Color(128,0,128);
+          			actualImage.setRGB(column, row, c.getRGB());
+          			writer.println("Xaxis: "+j+"Yaxis: "+j+"Value: "+"purple");
 	      			
-	      		}else{
-	      			
+          				      		
+	      		}else if(cluster == 15){
+	      			Color c = new Color(240,230,140);            //black
+          			actualImage.setRGB(column, row, c.getRGB());
+          			writer.println("Xaxis: "+j+"Yaxis: "+j+"Value: "+"khaki");
+          			//image.setRGB(column, row,c.getRGB());
+	      			/**/
+          			//image.setRGB(column, row,c.getRGB());
+	      		
+	      		}else if(cluster == 16){
 	      			Color c = new Color(255,0,0);            //red
 	      			actualImage.setRGB(column, row, c.getRGB());
 	      			//image.setRGB(column, row,c.getRGB());clusterImage
 	      			writer.println("Xaxis: "+j+"Yaxis: "+j+"Value: "+"red");
+          		
+	      		}else if(cluster == 17){
+	      			Color c = new Color(0,128,128);            //black
+          			actualImage.setRGB(column, row, c.getRGB());
+          			writer.println("Xaxis: "+j+"Yaxis: "+j+"Value: "+"teal");	
+	      			
+          			
+	      		}else if(cluster == 18){
+	      			Color c = new Color(128,128,0);            //black
+          			actualImage.setRGB(column, row, c.getRGB());
+          			writer.println("Xaxis: "+j+"Yaxis: "+j+"Value: "+"olive");
+          			//image.setRGB(column, row,c.getRGB());	
+	      			
+          			
 	      		
-	      	
+	      		}else{
+	      			Color c = new Color(0,128,128);            //black
+          			actualImage.setRGB(column, row, c.getRGB());
+          			writer.println("Xaxis: "+j+"Yaxis: "+j+"Value: "+"teal");	
+	      			/*Color c = new Color(240,230,140);            //black
+          			actualImage.setRGB(column, row, c.getRGB());
+          			writer.println("Xaxis: "+j+"Yaxis: "+j+"Value: "+"khaki");
+          			//image.setRGB(column, row,c.getRGB());
+*/	      			      		
+	      		
 	      		}
 	      		count++;
 	      	 }
