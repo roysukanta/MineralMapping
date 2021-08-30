@@ -813,7 +813,7 @@ public class elm {
 				//System.out.println("The equations are : ");
 				//System.out.println("y = "+slope+" x + "+intercept);
 				//System.out.println("correlation"+sr.getR());
-			   if(sr.getR()>threshold_corrFact){
+			   if(sr.getR()>Correlation_threshold){
 				        VerifiedOp_classification[k]=l; 
 				                  if (repetitions.containsKey(l))
 	 				                  repetitions.put(l, repetitions.get(l) + 1);
